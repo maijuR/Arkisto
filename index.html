@@ -18,12 +18,19 @@
             font-display: swap;
         }
 
+        @font-face {
+            font-family: 'Syne mono';
+            src: url('./assets/fonts/SyneMono-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
 
         body, html {
             height: 100%;
             margin: 0;
             background-color: #000000;
-            font-family:'Chakra Petch',
         }
 
         .follower {
@@ -66,22 +73,22 @@
             height: auto;  
             position: absolute;
             bottom: -1vw;
-            left: 0vw;
+            left: 55vw;
         }
 
         .keskikarhu {
             width: 15vw;  
             height: 100%; 
             position: absolute;
-            top: 3vw;
-            left: 43vw
+            top: 3.4vw;
+            left: 72vw;
         }
 
         .pienikarhu {
             width: 10vw;  
             height: 100%;  
             position: absolute;
-            bottom: -4.4vw;
+            bottom: -4.6vw;
             left: 86vw;
         }
 
@@ -107,7 +114,7 @@
             white-space: nowrap;
             font-size: 50px;
             font-family: 'Wavetosh';
-            top: 80vw;
+            top: 90%;
             left: 0vw;
             color: azure;
             z-index: 9999;
@@ -222,7 +229,7 @@
             }
         }
 
-        @media (max-width: 998px) {
+        @media (max-width: 600px) {
             .mars {
                 width: 40vw;       
                 height: 40vw;      
@@ -287,15 +294,24 @@
             display: none; 
             position: absolute; 
             top: 160%; 
-            left: 40%; 
+            left: 24%; 
             padding: 20px;
             border-radius: 50px;
-            width: 20vw;
+            width: 35vw;
             border: 2px dotted #c9d2d1; 
             background: rgba(0, 0, 0, 0.522); 
             animation: fadeIn 0.5s forwards; 
             transition: box-shadow 2s ease-in-out; 
             z-index: 9999; /
+        }
+
+        @media (max-width: 998px) {
+            #message {
+                width: 64vw;       
+                height: 40vw;  
+                left: 34%; 
+                top: 150%;    
+            }
         }
 
         @keyframes fadeIn {
@@ -331,9 +347,9 @@
         #viesti1 {
             display: none; 
             position: absolute; 
-            top: 40%; 
-            left: 45%; 
-            width: 20vw;
+            top: 50%; 
+            left: 35%; 
+            width: 36vw;
             padding: 20px;
             border-radius: 50px;
             border: 2px dotted #c9d2d1; 
@@ -344,13 +360,22 @@
             text-align:start;
         }
 
+        @media (max-width: 998px) {
+            #viesti1 {
+                width: 64vw;       
+                height: 25vw;  
+                left: 30%;     
+            }
+        }
+
        
         #viesti2 {
             display: none; 
             position: absolute;
-            top: 60%; 
-            left: 72%; 
-            width: 20vw;
+            top: 70%; 
+            left: 57%; 
+            width: 30vw;
+            min-width: 200px;
             padding: 20px;
             border-radius: 50px;
             border: 2px dotted #c9d2d1; 
@@ -360,23 +385,32 @@
             z-index: 9999; 
         }
 
+        @media (max-width: 998px) {
+            #viesti2 {
+                width: 64vw;       
+                height: 25vw;  
+                left: 30%; 
+                top: 90%;    
+            }
+        }
+
+
 
     /* TYPOGRAFIA*/
 
         p{
             color: ghostwhite;
+            font-family: 'Syne mono';
             text-wrap:wrap;
             margin: .3w;
             top: 0;
             line-height: 2vw;
-            font-size: .7rem;
+            font-size: 1rem;
+            word-spacing: 0.01rem;
+            font-stretch: ultra-condensed;
         }
 
         /*Linkki*/
-
-        .link {
-            color: #eb1818;
-        }
 
         a {
             color: #f62828;
@@ -456,11 +490,11 @@
     </div>
 
     <!-- text box -->
-    <div id="message">>
+    <div id="message">
         <p>
-            Finally, she landed on earth, the marble blue, <br> 
+            Finally, on earth, the marble blue, <br> 
 
-            Goldilocks had searched so long, and this felt true. <br> 
+            She had searched so long, and this felt true. <br> 
 
             The air was soft and the feeling light, <br> 
 
@@ -482,7 +516,7 @@
             "For even Earth is warming so." <br>
         </p>
     </div>
-    <div id="viesti1">>
+    <div id="viesti1">
         <p>
             First, she came to Venus, the evening star, <br> 
 
@@ -493,9 +527,9 @@
             So, she took her ship and moved on with the plot. 
          </p>
     </div>
-    <div id="viesti2">>
+    <div id="viesti2">
         <p>
-            Next was Mars, the warring red,. <br>
+            Next was Mars, the warring red, <br>
 
             The freeze came fast with the nightly dread.<br>
             

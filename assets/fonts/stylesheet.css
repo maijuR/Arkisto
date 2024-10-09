@@ -1,7 +1,6 @@
 @font-face {
-    font-family: 'Boba Mono';
-    src: url('BobaMonoRegular.woff2') format('woff2'),
-        url('BobaMonoRegular.woff') format('woff');
+    font-family: 'Hind Guntur';
+    src: url('HindGuntur-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

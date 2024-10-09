@@ -6,9 +6,31 @@
   <title>Where can I go?</title>
   <style>
 
+    
+  @font-face 
+    {
+      font-family: 'Syne mono';
+      src: url('./assets/fonts/SyneMono-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
 
     * {
       box-sizing: border-box;
+    }
+
+    .teksti {
+      position: absolute;
+      color: antiquewhite;
+      font-family: 'Syne mono';
+      line-height: 2vw;
+      font-size: 1rem;
+      word-spacing: 0.01rem;
+      top: 30%;
+      left: 50%;
+      z-index: 9999;
+
     }
 
     /* Style for the entire space (background) */
@@ -23,6 +45,7 @@
       bottom: 0;
       left: 0;
       right: 0;
+      z-index: 0;
     }
 
     /* General star styling */
@@ -243,13 +266,21 @@
   </style>
 </head>
 <body>
+
+  <div class="teksti">
+    <p>
+      nowhere to go <br>
+      Earth was rare
+    </p>
+  </div>
+
 <div id="space">
   <div class="stars"></div>
   <div class="stars"></div>
   <div class="stars"></div>
   <div class="stars"></div>
   <div class="stars"></div>
-  <div class="static stars"></div>
+  <div class="static-stars"></div>
 </div>
 
 </body>
