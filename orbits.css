@@ -1,0 +1,104 @@
+
+  /* Color variables */
+  :root {
+    --col-border: rgb(218, 230, 227);
+    
+  }
+
+  /* Universal box sizing */
+  * {
+    margin: 0;
+  }
+
+  /* Main sphere (core) styling */
+  .sphere {
+    position: relative;
+    width: 140vmin;
+    height: 140vmin;
+    border-radius: 50%;
+    border: 3px dotted var(--col-border);
+    margin: calc(50vh - 50vmin) auto;
+    transform-style: preserve-3d;
+  }
+
+  /* Orbital tracks - different sizes and rotations */
+  .track-1, .track-2, .track-3, .track-4, .track-5 {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px dotted var(--col-border);
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotateX(90deg); /* Make the circles lay flat */
+    animation: spin 30s linear infinite;
+  }
+
+
+  .track-1 {
+    width: 60vmin;
+    height: 65vmin;
+    animation-duration: 20s; 
+  }
+
+  .track-2 {
+    width: 85vmin;
+    height: 85vmin;
+    animation-duration: 50s;
+  }
+
+
+  .track-3 {
+    width: 150vmin;
+    height: 150vmin;
+    animation-duration: 90s;
+    transform: translate(-50%, -50%) rotateX(80deg); 
+    animation: spin-tilted 80s linear infinite; 
+
+  }
+
+  .track-4 {
+    width: 180vmin;
+    height: 180vmin;
+    animation-duration: 300s;
+  }
+
+  .track-5 {
+    width: 250vmin;
+    height: 250vmin;
+    animation-duration: 200s;
+  }
+
+  /* New large tilted track */
+  .tilted-track {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px dotted var(--col-border);
+    left: 50%;
+    top: 50%;
+    width: 250vmin;
+    height: 250vmin;
+    transform: translate(-50%, -50%) rotateX(45deg); /* Tilted at 45 degrees */
+    animation: spin-tilted 90s linear infinite; /* Different animation duration */
+  }
+
+  /* Keyframes for horizontal rotation */
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotateY(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotateY(360deg);
+    }
+  }
+
+  /* Keyframes for the tilted track */
+  @keyframes spin-tilted {
+    0% {
+      transform: translate(-50%, -50%) rotateX(60deg) rotateY(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotateX(60deg) rotateY(360deg);
+    }
+  }

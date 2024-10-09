@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where can I go?</title>
+  <style>
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Style for the entire space (background) */
+    #space {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background: #0B021E;
+      background: radial-gradient(at center bottom, #0B021E, #000000);     
+      overflow: hidden;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    /* General star styling */
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: repeat;
+      background-size: 300px 300px; /* Larger star spread for randomness */
+      animation: zoom infinite; /* Smooth forward and reverse */
+    }
+
+  
+    .stars:nth-child(1) {
+      background-image: 
+        radial-gradient(0.5px 0.5px at 10px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 200px 200px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 320px 90px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 400px 120px, #fff, rgba(0,0,0,0));
+      background-position: 50% 50%;
+      animation-duration: 120s;
+      animation-delay: 0s;
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+
+    .stars:nth-child(2) {
+      background-image: 
+        radial-gradient(1.4px 1.4px at 30px 100px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 150px 250px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 180px 300px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.4px 1.4px at 250px 150px, #fff, rgba(0,0,0,0));
+      background-position: 20% 60%;
+      animation-duration: 120s;
+      animation-delay: 10s;
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    
+
+  
+    .stars:nth-child(3) {
+      background-image: 
+        radial-gradient(1.4px 1.4px at 120px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 300px 300px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 30px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 400px 200px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.4px 1.4px at 340px 50px, #fff, rgba(0,0,0,0));
+      background-position: -20% -30%;
+      animation-duration: 120s;
+      animation-delay: 0s;
+      transform: scale(1.5);
+      opacity: 1;
+    }
+
+
+    .stars:nth-child(4) {
+      background-image: 
+        radial-gradient(1px 1px at 60px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 220px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 300px 200px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 180px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 300px, #fff, rgba(0,0,0,0));
+      background-position: 40% -80%;
+      animation-duration: 120s;
+      animation-delay: 40s;
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    .stars:nth-child(5) {
+      background-image: 
+        radial-gradient(1px 1px at 80px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 200px 100px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 240px 90px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 320px 400px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 300px 300px, #fff, rgba(0,0,0,0));
+      background-position: -20% 30%;
+      animation-duration: 120s;
+      animation-delay: 60s;
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+
+    .stars:nth-child(6) {
+      background-image: 
+        radial-gradient(1px 1px at 80px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 200px 100px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 240px 90px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 320px 400px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 300px 300px, #fff, rgba(0,0,0,0));
+      background-position: -20% 30%;
+      animation-duration: 120s;
+      animation-delay: 80s;
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+
+     .stars:nth-child(7) {
+      background-image: 
+        radial-gradient(0.5px 0.5px at 60px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(0.5px 0.5px at 220px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 300px 200px, #fff, rgba(0,0,0,0)),
+        radial-gradient(0.5px 0.5px at 180px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 300px, #fff, rgba(0,0,0,0));
+      background-position:-20% 30%;
+      animation-duration: 120s;
+      animation-delay: 100s;
+      transform: scale(0.8);
+      opacity:0.5;
+    }
+
+    .stars:nth-child(8) {
+      background-image: 
+        radial-gradient(1.2px 1.2px at 30px 100px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 150px 250px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 180px 300px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.2px 1.2px at 250px 150px, #fff, rgba(0,0,0,0));
+      background-position: 20% 60%;
+      animation-duration: 120s;
+      animation-delay: 110s;
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    .stars:nth-child(9) {
+      background-image: 
+        radial-gradient(1px 1px at 60px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 220px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 300px 200px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 180px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 300px, #fff, rgba(0,0,0,0));
+      background-position: 40% -80%;
+      animation-duration: 120s;
+      animation-delay: 0s;
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    .stars:nth-child(10) {
+      background-image: 
+        radial-gradient(1px 1px at 80px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 200px 100px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 240px 90px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 320px 400px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 300px 300px, #fff, rgba(0,0,0,0));
+      background-position: -20% 30%;
+      animation-duration: 120s;
+      animation-delay: 0s;
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+
+    .stars:nth-child(11) {
+      background-image: 
+        radial-gradient(0.5px 0.5px at 10px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 200px 200px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 320px 90px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 400px 120px, #fff, rgba(0,0,0,0));
+      background-position: 50% 50%;
+      animation-duration: 120s;
+      animation-delay: 90s;
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+
+     
+     .stars:nth-child(12) {
+      background-image: 
+        radial-gradient(1px 1px at 60px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 220px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 300px 200px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 180px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 300px, #fff, rgba(0,0,0,0));
+      background-position: 40% -80%;
+      animation-duration: 120s;
+      animation-delay: 50s;
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    .static-stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(0.5px 0.5px at 10px 20px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(0.7px 0.7px at 40px 60px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(0.6px 0.6px at 200px 100px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(0.5px 0.5px at 320px 180px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(0.8px 0.8px at 400px 120px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(0.5px 0.5px at 500px 300px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(0.6px 0.6px at 700px 400px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(0.4px 0.4px at 900px 500px, #fff, rgba(0, 0, 0, 0));
+      background-position: 50% 50%;
+      background-repeat: repeat;
+      background-size: 800px 800px;
+      opacity: 0.3; 
+      z-index: -1; 
+    }
+
+    /* Zoom animation for stars with reverse direction */
+    @keyframes zoom {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.5; /* Adjust for fading out */
+      }
+      100% {
+        opacity: 0; /* Fully fade out */
+        transform: scale(2.3); /* Smooth scaling */
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="space">
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="static stars"></div>
+</div>
+
+</body>
+</html>

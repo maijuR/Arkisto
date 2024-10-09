@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goldilocks zone</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" type="text/css" href="space.css">
+  <link rel="stylesheet" type="text/css" href="orbits.css">
+  <style>
+
+
+        @font-face {
+            font-family: 'Wavetosh';
+            src: url('./assets/fonts/Wavetosh.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Boba Mono';
+            src: url('./assets/fonts/BobaMonoRegular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Chakra Petch';
+            src: url('./assets/fonts/ChakraPetch-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #000000;
+            font-family:'Chakra Petch',
+        }
+
+        .follower {
+            position: absolute; 
+            pointer-events: none; 
+            z-index: 9999; 
+            transition: left 0.1s, top 0.1s; 
+        }   
+
+        .follower img {
+            width: 100px; 
+            height: auto; 
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        .wrapper {
+            display: grid;
+            grid-template-areas:
+                "header"
+                "main"
+                "footer";
+            grid-template-rows: 17vw 200vh 3vw;
+        }
+
+
+        header {
+            grid-area: header;
+            position: relative;
+            width: 100vw; 
+            overflow: hidden;
+            
+        }
+
+        .isokarhu {
+            width: 20vw; 
+            height: auto;  
+            position: absolute;
+            bottom: -1vw;
+            left: 0vw;
+        }
+
+        .keskikarhu {
+            width: 15vw;  
+            height: 100%; 
+            position: absolute;
+            top: 3vw;
+            left: 43vw
+        }
+
+        .pienikarhu {
+            width: 10vw;  
+            height: 100%;  
+            position: absolute;
+            bottom: -4.4vw;
+            left: 86vw;
+        }
+
+        .poem{
+            position: absolute;
+            top: 2vw;
+            left: 4vw;
+            align-content: flex-start;
+            line-height: 3vw;
+        }
+
+
+        main {
+            grid-area: main;
+            position: relative;  
+            overflow: hidden;    
+        }
+
+        .rotated-text {
+            position: absolute;
+            transform: rotate(-90deg); 
+            transform-origin: left top; 
+            white-space: nowrap;
+            font-size: 50px;
+            font-family: 'Wavetosh';
+            top: 80vw;
+            left: 0vw;
+            color: azure;
+            z-index: 9999;
+        }
+
+   
+        .frame {
+            padding: 0 1vw; 
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: rgb(0, 0, 0);
+            text-align: center;
+            color: white;
+            padding-top: .9vw;;
+            position: relative;
+        }
+
+        .space {
+            position: relative;
+            z-index: 1; 
+        }
+
+        .orbits {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; 
+        }
+
+        .planet-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);  
+            grid-template-rows: repeat(10, 1fr);     
+            gap: 20px;  
+            width: 100%;
+            height: 200vh;  
+            z-index: 3;  
+            position: relative;  
+        }
+
+       
+        .venus {
+            grid-column: 2;  
+            grid-row: 1;   
+            justify-self: start;  
+            align-self: start; 
+            cursor: pointer;   
+        }
+
+        .earth {
+            grid-column: 7;  
+            grid-row: 8;     
+            justify-self: start;   
+            align-self: start;     
+            cursor: pointer;       
+        }
+
+        .mars {
+            grid-column: 9;  
+            grid-row: 3;     
+            justify-self: start;   
+            align-self: start;     
+        }
+
+        
+        .planet {
+            width: 200px;
+            height: 200px;
+            margin: 0px;
+            background: #666 url(none) repeat-x 0% 0%;
+            background-size: 400px 200px;
+            border-radius: 50%;
+            animation: rotatePlanet 25s linear infinite;
+            position: absolute; 
+        }
+
+        .planet:hover {
+            animation-play-state: paused;
+        }
+
+        .planet.stop-rotation {
+            animation-play-state: paused; 
+        }
+
+        .planet:after {
+            content: '';
+            display: grid;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image: radial-gradient(5% 40%, farthest-corner, rgba(255,240,180,.3) 0%, rgba(255,240,180,0) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,.95) 75%);
+        }
+
+
+        @media (max-width: 998px) {
+            .venus {
+                width: 20vw;       
+                height: 20vw;      
+            }
+        }
+
+        @media (max-width: 998px) {
+            .earth {
+                width: 20vw;       
+                height: 20vw;      
+                grid-column: 4;  
+                grid-row: 8;
+            }
+        }
+
+        @media (max-width: 998px) {
+            .mars {
+                width: 40vw;       
+                height: 40vw;      
+                grid-column: 6;  
+                grid-row: 5;
+
+            }
+        }
+
+        .venus {
+            background-image: url("./assets/img/venus3.png");
+            transform: scale(5);
+            box-shadow: 0 0 90px rgba(251, 222, 1, 0.812);
+            box-shadow: inset -40px -40px 40px rgba(55, 1, 1, 0.732);
+        }
+
+        .earth {
+            background-image: url("./assets/img/earth3.png");
+            transform: scale(1.6);
+            box-shadow: 0 0 80px rgba(175,230,255,.4);
+            box-shadow: inset -40px -40px 40px rgba(10, 2, 57, 0.752);
+            position: relative; 
+            z-index: 2;
+        }
+
+        .mars {
+            background-image: url("./assets/img/mars2.png");
+            transform: scale(.60);
+            box-shadow: inset -40px -40px 40px rgba(11, 1, 43, 0.858);
+        }
+
+        @keyframes rotatePlanet {
+            from { background-position: 0% 0%; }
+            to { background-position: 200% 0%; }
+        }
+
+       
+        .earth.glowing {
+            z-index: 1; 
+        }
+    
+
+        .earth.glowing::before {
+            content: '';
+            position: absolute;
+            top: 0%; 
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 69, 0, 0.8);
+            animation: heatGlow 20s infinite alternate;
+            z-index: -1; 
+        }
+
+        .earth.stop-rotation.rotate {
+            animation-play-state: paused;
+        }
+
+   
+        #message {
+            display: none; 
+            position: absolute; 
+            top: 160%; 
+            left: 40%; 
+            padding: 20px;
+            border-radius: 50px;
+            width: 20vw;
+            border: 2px dotted #c9d2d1; 
+            background: rgba(0, 0, 0, 0.522); 
+            animation: fadeIn 0.5s forwards; 
+            transition: box-shadow 2s ease-in-out; 
+            z-index: 9999; /
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); 
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0); 
+            }
+        }
+
+        
+        @keyframes heatGlow {
+            0% {
+                box-shadow: 0 0 10px rgba(160, 104, 8, 0.371); 
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 69, 0, 0.8); 
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 69, 0, 0.8); 
+            }
+        }
+
+  
+        #message.glowing {
+            animation: heatGlow 20s infinite alternate;
+        }
+
+        /* Venus text box */
+        #viesti1 {
+            display: none; 
+            position: absolute; 
+            top: 40%; 
+            left: 45%; 
+            width: 20vw;
+            padding: 20px;
+            border-radius: 50px;
+            border: 2px dotted #c9d2d1; 
+            background: rgba(0, 0, 0, 0.522); 
+            animation: fadeIn 0.5s forwards; 
+            transition: box-shadow 2s ease-in-out; 
+            z-index: 9999; 
+            text-align:start;
+        }
+
+       
+        #viesti2 {
+            display: none; 
+            position: absolute;
+            top: 60%; 
+            left: 72%; 
+            width: 20vw;
+            padding: 20px;
+            border-radius: 50px;
+            border: 2px dotted #c9d2d1; 
+            background: rgba(0, 0, 0, 0.522); 
+            animation: fadeIn 0.5s forwards; 
+            transition: box-shadow 2s ease-in-out; 
+            z-index: 9999; 
+        }
+
+
+    /* TYPOGRAFIA*/
+
+        p{
+            color: ghostwhite;
+            font-family: 'Chakra Petch';
+            text-wrap:wrap;
+            margin: .3w;
+            top: 0;
+            line-height: 2vw;
+            font-size: .7rem;
+        }
+
+        /*Linkki*/
+
+        .link {
+            color: #eb1818;
+        }
+
+        a {
+            color: #f62828;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        a:hover {
+            text-decoration:underline;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="follower" class="follower">
+        <img src="./assets/img/bear4.svg" alt="Cursor Follower" />
+    </div>
+
+    <div class="wrapper">
+        <header>
+            <img class=isokarhu src="./assets/img/bear4.svg" alt="pikselöity karhu" />
+            <img class=keskikarhu src="./assets/img/bear4.svg" alt="pikselöity karhu" />
+            <img class=pienikarhu src="./assets/img/bear4.svg" alt="pikselöity karhu" />
+            <div class="poem">
+                <p>
+                    She was searching for a home so rare <br>
+
+                    “If I find one, I'll take good care.” <br>
+
+                    In need of a planet that was "just right." <br>
+
+                    Goldilocks was ready for a one-way flight. <br>
+                </p>
+            </div>
+        </header>
+
+        
+        <div class="frame">
+            <main>
+
+                <div class="rotated-text">
+                    GOldilocks zone
+                </div>
+
+                <!-- Space and stars -->
+                <div id="space">
+                    <div class="stars"></div>
+                    <div class="stars"></div>
+                    <div class="stars"></div>
+                    <div class="stars"></div>
+                    <div class="stars"></div>
+                    <div class="static stars"></div>
+                </div>
+
+                <!-- Orbits -->
+                <div class="orbits">
+                    <div class="track-1"></div>
+                    <div class="track-2"></div>
+                    <div class="track-3"></div>
+                    <div class="track-4"></div>
+                    <div class="track-5"></div>
+                    <div class="tilted-track"></div>
+                </div>
+
+                <!-- Planets -->
+                <div class="planet-grid">
+                    <div class="planet venus" onclick="toggleViesti1()"></div>
+                    <div class="planet earth" onclick="toggleMessage()"></div>
+                    <div class="planet mars" onclick="toggleViesti2()"></div>
+                </div>
+            </main>
+        </div>
+
+        <footer>
+          <p></p>
+        </footer>
+    </div>
+
+    <!-- text box -->
+    <div id="message">>
+        <p>
+            Finally, she landed on earth, the marble blue, <br> 
+
+            Goldilocks had searched so long, and this felt true. <br> 
+
+            The air was soft and the feeling light, <br> 
+
+            She laughed out loud, "This place is just right!" <br> 
+            <br> 
+        </p>
+
+        <p>
+            But soon, she felt a creeping heat, <br>
+
+            Beneath her toes, the rising beat. <br>
+            
+            The skies grew thick, the waters warm, <br>
+            
+            As storms and fires began to swarm. <br>
+            
+            <a class="link" href="nowhere.html">"Where can I go?"</a> she whispered low, <br>
+            
+            "For even Earth is warming so." <br>
+        </p>
+    </div>
+    <div id="viesti1">>
+        <p>
+            First, she came to Venus, the evening star, <br> 
+
+            The clouds were acid, and the heat left a scar.<br> 
+            
+            "I can’t stay, it’s just too hot " <br> 
+            
+            So, she took her ship and moved on with the plot. 
+         </p>
+    </div>
+    <div id="viesti2">>
+        <p>
+            Next was Mars, the warring red,. <br>
+
+            The freeze came fast with the nightly dread.<br>
+            
+            "This is too cold, it just won’t do" <br>
+            
+            She had to keep going somewhere new. <br>
+
+        </p>
+    </div>
+    
+    
+    <script>
+        function toggleMessage() {
+            const messageElement = document.getElementById('message');
+            const earthElement = document.querySelector('.earth');
+
+            if (messageElement.style.display === 'none' || messageElement.style.display === '') {
+                messageElement.style.display = 'block';
+                earthElement.classList.add('stop-rotation');
+                setTimeout(() => {
+                    earthElement.classList.add('glowing');
+                    messageElement.classList.add('glowing');
+                }, 8000);
+            } else {
+                messageElement.style.display = 'none';
+                earthElement.classList.remove('glowing');
+                earthElement.classList.remove('stop-rotation');
+                messageElement.classList.remove('glowing');
+            }
+        }
+
+        function toggleViesti1() {
+            const viesti1Element = document.getElementById('viesti1');
+            const venusElement = document.querySelector('.venus');
+
+            if (viesti1Element.style.display === 'none' || viesti1Element.style.display === '') {
+                viesti1Element.style.display = 'block';
+                venusElement.classList.add('stop-rotation'); 
+            } else {
+                viesti1Element.style.display = 'none';
+                venusElement.classList.remove('stop-rotation'); 
+            }
+        }
+
+        function toggleViesti2() {
+            const viesti2Element = document.getElementById('viesti2');
+            const marsElement = document.querySelector('.mars');
+
+            if (viesti2Element.style.display === 'none' || viesti2Element.style.display === '') {
+                viesti2Element.style.display = 'block';
+                marsElement.classList.add('stop-rotation'); 
+            } else {
+                viesti2Element.style.display = 'none';
+                marsElement.classList.remove('stop-rotation'); 
+            }
+        }
+
+        document.addEventListener('mousemove', (e) => {
+                    const follower = document.getElementById('follower');
+                    follower.style.left = `${e.pageX}px`;
+                    follower.style.top = `${e.pageY}px`;
+                });
+
+
+    </script>
+</body>
+</html>
